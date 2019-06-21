@@ -18,7 +18,7 @@ let package = Package(
 	],
 	dependencies: [
 		.package(url: "https://github.com/std-swift/Time.git",
-		         from: "1.0.0")
+		         from: "1.0.0"),
 	],
 	targets: [
 		.target(

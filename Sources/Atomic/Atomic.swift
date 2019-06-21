@@ -55,6 +55,32 @@ public class Atomic<Element> {
 			return try closure(&self.value)
 		}
 	}
+	
+	public func withReadLock<T>(_ closure: (Element) throws -> T) rethrows -> T {
+		return try self.lock.with(.read) {
+			return try closure(self.value)
+		}
+	}
+	
+	func tryWithReadLock<T>(_ closure: (Element) throws -> T) rethrows -> TimeoutResult<T> {
+		return try self.lock.tryWith(.read) {
+			return try closure(self.value)
+		}
+	}
+	
+	func tryWithReadLock<T>(timeout: Timeout,
+	                        _ closure: (Element) throws -> T) rethrows -> TimeoutResult<T> {
+		return try self.lock.tryWith(.read, timeout: timeout) {
+			return try closure(self.value)
+		}
+	}
+	
+	func tryWithReadLock<T>(deadline: Deadline,
+	                        _ closure: (Element) throws -> T) rethrows -> TimeoutResult<T> {
+		return try self.lock.tryWith(.read, deadline: deadline) {
+			return try closure(self.value)
+		}
+	}
 }
 
 extension Atomic {

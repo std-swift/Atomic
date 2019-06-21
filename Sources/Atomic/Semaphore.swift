@@ -7,7 +7,7 @@ import Dispatch
 import Time
 
 public class Semaphore: Lockable {
-	private var sem: DispatchSemaphore
+	private let sem: DispatchSemaphore
 	
 	public init(value: Int) {
 		self.sem = DispatchSemaphore(value: value)

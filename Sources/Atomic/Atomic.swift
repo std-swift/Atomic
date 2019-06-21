@@ -7,7 +7,7 @@ import Time
 
 public class Atomic<Element> {
 	private var value: Element
-	private var lock: Lockable
+	private let lock: Lockable
 	
 	public init(_ value: Element, _ lock: Lockable = Semaphore(value: 1)) {
 		self.value = value
